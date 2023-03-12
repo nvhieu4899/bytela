@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: hieunv
+    password: nguyenvanhieu
+    url: jdbc:postgresql://localhost:5432/bytela
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+config:
+  shortLinkSize: 7

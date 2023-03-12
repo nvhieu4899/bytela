@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: hieunv
+      POSTGRES_PASSWORD: nguyenvanhieu
+    ports:
+      - '5432:5432'
+
+
