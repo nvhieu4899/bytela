@@ -1,11 +1,23 @@
 version: '3.9'
 services:
-  logstash:
-    image: logstash:7.17.9
   elasticsearch:
     image: elasticsearch:7.17.9
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+  logstash:
+    image: logstash:7.17.9
+    depends_on: [elasticsearch]
+    environment:
+      - monitoring.elasticsearch.hosts=elasticsearch:9200
   kibana:
     image: kibana:7.17.9
+    depends_on: [elasticsearch]
+    environment:
+      - elasticsearch.host=elasticsearch:9200
+      - monitoring.ui.container.elasticsearch.enabled=true
+    ports:
+      - "5601:5601"
 networks:
   elk-network:
     driver: bridge
